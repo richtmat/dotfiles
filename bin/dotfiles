@@ -27,39 +27,15 @@ sub_test () {
 }
 
 sub_update () {
-  sudo softwareupdate -i -a
-  brew update
-  brew upgrade
   npm install npm -g
   npm update -g
-  gem update --system
-  gem update
 }
 
 sub_clean () {
-  brew cleanup
-  brew cask cleanup
   npm cache clean
-  gem cleanup
-  rvm cleanup all
-}
-
-sub_macos () {
-  for DEFAULTS_FILE in "${DOTFILES_DIR}"/macos/defaults*.sh; do
-    echo "Applying ${DEFAULTS_FILE}" && . "${DEFAULTS_FILE}"
-  done
-  echo "Done. Some changes may require a logout/restart to take effect."
-}
-
-sub_dock () {
-  . "${DOTFILES_DIR}/macos/dock.sh" && echo "Dock reloaded."
 }
 
 # Make sure to keep this in sync with the available public commands
-
-sub_completion () {
-  echo "clean dock edit help macos test update"
-}
 
 case $COMMAND_NAME in
   "" | "-h" | "--help")
